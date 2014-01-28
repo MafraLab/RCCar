@@ -1,7 +1,10 @@
 #include <SoftwareSerial.h>
 
+// Bluetooth dongle ports
 int bluetoothTx = 2;
 int bluetoothRx = 3;
+
+
 int pinDir1 = 9;
 int pinDir2 = 8;
 
@@ -32,6 +35,7 @@ void loop()
     char readln = (char)bluetooth.read();
     if ( readln== '2')
     {
+      //Move car forward
       digitalWrite(motor2, LOW);
       digitalWrite(motor1, HIGH);
       digitalWrite(pinDir1, LOW);
@@ -42,6 +46,7 @@ void loop()
     }
     else if (readln == '1')
     {
+      //Move car to forward + left
       digitalWrite(motor2, LOW);
       digitalWrite(motor1, HIGH);
       digitalWrite(pinDir1, HIGH);
@@ -52,6 +57,7 @@ void loop()
     }
     else if (readln == '3')
     {
+      //Move car to forward + right
       digitalWrite(motor2, LOW);
       digitalWrite(motor1, HIGH);
       digitalWrite(pinDir1, LOW);
@@ -62,6 +68,7 @@ void loop()
     }
     else if (readln == '8')
     {
+      //Move car backwards
       digitalWrite(motor2, HIGH);
       digitalWrite(motor1, LOW);
       toSend = "tras";
@@ -70,6 +77,7 @@ void loop()
     }
     else if (readln == '9')
     {
+      //move car backward + right
       digitalWrite(motor2, HIGH);
       digitalWrite(motor1, LOW);
       digitalWrite(pinDir1, LOW);
@@ -78,8 +86,9 @@ void loop()
       delay(250);
       Para();
     }
-    else if (readln == '7calma')
+    else if (readln == '7')
     {
+      //move car backward + left
       digitalWrite(motor2, HIGH);
       digitalWrite(motor1, LOW);
       digitalWrite(pinDir1, HIGH);
@@ -90,6 +99,7 @@ void loop()
     }
     else
     {
+      //break and stop
       digitalWrite(motor2, HIGH);
       digitalWrite(motor1, HIGH);
       delay(500);
@@ -109,6 +119,7 @@ void loop()
   }
 }
 
+//Stops
 void Para()
 {
       digitalWrite(motor2, LOW);
